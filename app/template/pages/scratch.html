@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<script>
+function submit() {
+    text = document.getElementById("text").value
+    filename = document.getElementById("in").value
+
+    var formData = new FormData();
+    formData.append(filename, text);
+    console.log("Formdata = " + formData);
+
+    var file = new File([text], filename, {
+      type: "text/plain"
+    });
+    var formData = new FormData();
+    formData.append('textfile', file);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/save", true);
+    xhr.send(formData);
+}
+</script>
+FileName:
+<input id="in"></input>
+TextArea
+<textarea id="text"></textarea>
+
+<button id="formsub" onclick="submit()">Submit</button>
+</body>
+</html>
